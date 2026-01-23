@@ -43,3 +43,52 @@ class UserService:
             "message": "Usuário criado com sucesso",
             "user": user_model(user_dict)
         }
+
+
+    @staticmethod
+    def get_user_by_id(user_id: int):
+        user = user_collection.find_one({"id": user_id})
+
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Usuário não encontrado"
+            )
+
+        return {
+            "message": "Usuário encontrado com sucesso",
+            "user": user_model(user)
+        }
+
+    @staticmethod
+    def update_user(user_id:int, data: User):
+        user = user_collection.find_one({"id": user_id})
+        
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Usuário não encontrado"
+            )
+
+        user_collection.update_one({"id": user_id}, {"$set": data.dict()})
+
+        return {
+            "message": "Usuário atualizado com sucesso",
+            "user": user_model(data.dict())
+        }
+
+    @staticmethod
+    def delete_user(user_id: int):
+        user = user_collection.find_one({"id": user_id})
+
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Usuário não encontrado"
+            )
+
+        user_collection.delete_one({"id": user_id})
+
+        return {
+            "message": "Usuário deletado com sucesso"
+        }

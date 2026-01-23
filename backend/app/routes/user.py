@@ -16,3 +16,14 @@ def login(data: User):
 def create_user (data: User):
     return user_service.UserService.create_user(data)
 
+@router.get("/{user_id}")
+def get_user_by_id(user_id: int):
+    return user_service.UserService.get_user_by_id(user_id)
+
+@router.put("/{user_id}")
+def update_user(user_id: int, data: User):
+    return user_service.UserService.update_user(user_id, data)
+
+@router.delete("/{user_id}")
+def delete_user(user_id: int):
+    return user_service.UserService.delete_user(user_id)

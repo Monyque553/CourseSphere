@@ -7,7 +7,7 @@ class Lesson(BaseModel):
     publish_date: str
     video_url: str
     course_id: int
-    creator_id: int
+    instructor_id: int
 
 
 

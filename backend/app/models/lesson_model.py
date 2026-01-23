@@ -6,5 +6,5 @@ def lesson_model(lesson) -> dict:
         "publish_date": str(lesson["publish_date"]),
         "video_url": str(lesson["video_url"]),
         "course_id": int(lesson["course_id"]),
-        "creator_id": int(lesson["creator_id"])
+        "instructor_id": int(lesson["instructor_id"])
     }
