@@ -6,8 +6,8 @@ from fastapi import HTTPException, status
 class UserService:
 
     @staticmethod
-    def login(data: User):
-        user = user_collection.find_one({"email": data.email})
+    def login(data: dict):
+        user = user_collection.find_one({"email": data["email"]})
 
         if not user:
             raise HTTPException(
@@ -15,7 +15,7 @@ class UserService:
                 detail="Usuário não encontrado"
             )
 
-        if user["password"] != data.password:
+        if user["password"] != data["password"]:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Senha inválida"
@@ -58,6 +58,17 @@ class UserService:
         return {
             "message": "Usuário encontrado com sucesso",
             "user": user_model(user)
+        }
+    @staticmethod
+    def get_all_instructors():
+        instructors = list(user_collection.find({"role": "I"}))
+
+        model_list_instructors = []
+        for instructor in instructors:
+            model_list_instructors.append(user_model(instructor))
+        return {
+            "message": "Instrutores encontrados com sucesso",
+            "instructors": model_list_instructors
         }
 
     @staticmethod

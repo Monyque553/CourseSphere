@@ -17,11 +17,11 @@ def get_courses_by_creator(id_creator: int):
 def get_courses_by_instructor(id_instructor: int):
     return course_service.CourseService.get_course_by_instructor(id_instructor)
 
-@router.put("/{course_id}")
+@router.put("/update/{course_id}")
 def update_course(course_id: int, data: Course):
     return course_service.CourseService.update_course(course_id, data)
 
-@router.delete("/{course_id}")
+@router.delete("/delete/{course_id}")
 def delete_course(course_id: int):
     return course_service.CourseService.delete_course(course_id)
 

@@ -9,7 +9,7 @@ router = APIRouter(prefix="/auth", tags=["Auth"])
 
 
 @router.post("/login")
-def login(data: User):
+def login(data: dict):
     return user_service.UserService.login(data)
 
 @router.post("/create")
@@ -19,6 +19,10 @@ def create_user (data: User):
 @router.get("/{user_id}")
 def get_user_by_id(user_id: int):
     return user_service.UserService.get_user_by_id(user_id)
+
+@router.get("/instructors/list")
+def get_all_instructors():
+    return user_service.UserService.get_all_instructors()
 
 @router.put("/{user_id}")
 def update_user(user_id: int, data: User):
