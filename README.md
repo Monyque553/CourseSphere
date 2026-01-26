@@ -1,6 +1,6 @@
 #CourseSphere — Instruções de Execução
 
-Este projeto foi desenvolvido como parte de um processo seletivo de estágio e consiste em uma aplicação web para gerenciamento de cursos.
+Este projeto foi desenvolvido como parte de um processo seletivo de estágio para vaga de front end do VLAB e consiste em uma aplicação web para gerenciamento de cursos.
 
 ##Tecnologias Utilizadas
 
